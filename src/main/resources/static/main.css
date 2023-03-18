@@ -1,0 +1,26 @@
+body{
+    background-color: #cccccc;
+}
+.box{
+    margin: auto;
+    width: 80%;
+    margin-top: 5%;
+    background-color: #FFFFFF;
+    border: 1px solid #e3e6f0;
+    padding: 10px;
+
+}
+.title{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+.content{
+    margin: auto;
+}
+.contentUp{
+    margin: auto;
+    border: 1px solid #e3e6f0;
+    padding: 25px;
+    margin-bottom: 30px;
+}

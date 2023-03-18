@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Demo | Upload</title>
+    <link rel="stylesheet" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-md12 box">
+            <h3 class="title">Pivot Table - Demo | Upload</h3>
 
+            <div class="contentUp col-6">
+                <p class="text-center font-weight-bold">Upload Your csv File</p>
+                <form>
+                    <div class="custom-file">
+                        <input type="file" accept=".csv" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <button style="margin-top: 20px" type="submit" class="btn btn-block btn-success">Upload Data</button>
+                </form>
+            </div>
+
+            <a href="/" class="btn-info btn"> < Home </a>
+        </div>
+    </div>
+
+    <script>
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+</div>
 </body>
 </html>
