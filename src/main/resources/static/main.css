@@ -17,6 +17,7 @@ body{
 }
 .content{
     margin: auto;
+    margin-bottom: 30px;
 }
 .contentUp{
     margin: auto;

@@ -15,10 +15,10 @@
             <h3 class="title">Pivot Table - Demo | Upload</h3>
 
             <div class="contentUp col-6">
-                <p class="text-center font-weight-bold">Upload Your csv File</p>
-                <form>
+                <p class="text-center font-weight-bold">select your csv File</p>
+                <form method="post" th:action="@{/FileUpload}" enctype="multipart/form-data">
                     <div class="custom-file">
-                        <input type="file" accept=".csv" class="custom-file-input" id="customFile">
+                        <input type="file" accept=".csv" class="custom-file-input" id="File" name="File" required>
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                     <button style="margin-top: 20px" type="submit" class="btn btn-block btn-success">Upload Data</button>
