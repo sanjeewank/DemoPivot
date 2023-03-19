@@ -1,9 +1,6 @@
 package com.demoPI.demoPI.Services;
 
-import com.demoPI.demoPI.Models.CustomerSegment;
-import com.demoPI.demoPI.Models.DeliveryMethod;
-import com.demoPI.demoPI.Models.Product;
-import com.demoPI.demoPI.Models.ProductCategory;
+import com.demoPI.demoPI.Models.*;
 import com.demoPI.demoPI.Repository.SalesProfitsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +18,9 @@ import java.util.Map;
 public class UploadService {
 
     @Autowired
+    private DataSavingService dataSavingService;
+
+    @Autowired
     private SalesProfitsRepo salesProfitsRepo;
 
     public UploadService(){
@@ -35,10 +35,10 @@ public class UploadService {
         FileReadService fileReadService = new FileReadService(file);
         Map<Integer, List<Product>> fileData = new HashMap<>();
         fileData=fileReadService.readAndGetData();
-        System.out.println(fileData.values());
+        this.saveData(fileData);
     }
-    public void saveData(){
-
+    public void saveData(Map<Integer, List<Product>> csvData){
+        this.dataSavingService.UpdateDB(csvData);
     }
 
     public File convertMultipartToFile(MultipartFile multipartFile) throws IOException, IOException {
