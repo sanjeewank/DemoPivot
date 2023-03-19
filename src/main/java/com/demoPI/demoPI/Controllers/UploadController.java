@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class UploadController {
@@ -21,8 +22,9 @@ public class UploadController {
     }
 
     @RequestMapping(value="/FileUpload", method= RequestMethod.POST)
-    public void uploadFile(@RequestParam("File") MultipartFile File){
+    public ModelAndView  uploadFile(@RequestParam("File") MultipartFile File){
         uploadService.readFile(File);
+        return new ModelAndView("redirect:/message?query=Data has been uploaded successfully");
     }
 
 }

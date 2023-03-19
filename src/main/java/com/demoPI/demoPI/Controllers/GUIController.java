@@ -21,4 +21,8 @@ public class GUIController {
         return "view";
     }
 
+    @GetMapping(value = "/message")
+    public String getMessage(){
+        return "message";
+    }
 }

@@ -40,7 +40,7 @@ public class DataSavingService {
 
     private static Logger logger = LoggerFactory.getLogger(DataSavingService.class);
 
-    public void UpdateDB(Map<Integer, List<Product>> csvData){
+    public boolean UpdateDB(Map<Integer, List<Product>> csvData){
         List<SalesProfitsSummery> ListSalesProfitsSummery = new ArrayList<>();
         List<Product> CSVDataStack = new ArrayList<>();
         int Year;
@@ -93,8 +93,9 @@ public class DataSavingService {
                         );
                     }
             );
+            return true;
         }catch (Exception e){
-            System.out.println(e);
+            return false;
         }
     }
 

@@ -25,20 +25,25 @@ public class UploadService {
 
     public UploadService(){
     }
-    public void readFile(MultipartFile File){
+    public boolean readFile(MultipartFile File){
         File file = null;
         try{
             file=convertMultipartToFile(File);
         }catch (Exception e){
-            System.out.println("File Convert Failed");
+            return false;
         }
         FileReadService fileReadService = new FileReadService(file);
         Map<Integer, List<Product>> fileData = new HashMap<>();
         fileData=fileReadService.readAndGetData();
-        this.saveData(fileData);
+        try{
+            this.saveData(fileData);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
-    public void saveData(Map<Integer, List<Product>> csvData){
-        this.dataSavingService.UpdateDB(csvData);
+    public boolean saveData(Map<Integer, List<Product>> csvData){
+        return this.dataSavingService.UpdateDB(csvData);
     }
 
     public File convertMultipartToFile(MultipartFile multipartFile) throws IOException, IOException {
