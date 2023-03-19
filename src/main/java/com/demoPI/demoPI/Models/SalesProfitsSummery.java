@@ -1,20 +1,20 @@
 package com.demoPI.demoPI.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Table(indexes = {@Index(name = "my_index", columnList = "productCategory, customerSegment, deliveryMethod", unique = true)})
 @Data
 public class SalesProfitsSummery {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int ID;
     private int year;
+    @Column(nullable = false)
     private String productCategory;
+    @Column(nullable = false)
     private String customerSegment;
+    @Column(nullable = false)
     private String deliveryMethod;
     private double sumOfSales;
     private double sumOfProfits;

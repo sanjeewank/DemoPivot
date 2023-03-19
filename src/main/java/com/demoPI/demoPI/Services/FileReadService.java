@@ -2,6 +2,10 @@ package com.demoPI.demoPI.Services;
 
 import com.demoPI.demoPI.Models.DataStack;
 import com.demoPI.demoPI.Models.Product;
+import com.demoPI.demoPI.Repository.CustomerSegmentRepo;
+import com.demoPI.demoPI.Repository.DeliveryMethodRepo;
+import com.demoPI.demoPI.Repository.ProductCategoryRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,6 +14,17 @@ import java.util.List;
 import java.util.Map;
 
 public class FileReadService {
+
+    @Autowired
+    ProductCategoryRepo productCategoryRepo;
+
+    @Autowired
+    CustomerSegmentRepo customerSegmentRepo;
+
+    @Autowired
+    DeliveryMethodRepo deliveryMethodRepo;
+
+
     private File CSVFile;
     private String CvsSplitBy;
 
@@ -26,9 +41,12 @@ public class FileReadService {
         return this.CvsSplitBy;
     }
     public Map<Integer, List<Product>> readAndGetData(){
-        ArrayList<String> products = new ArrayList<String>();
-        ArrayList<String> customers = new ArrayList<String>();
-        ArrayList<String> deliveryMethods = new ArrayList<String>();
+        ArrayList<String> products = new ArrayList<String>();products.add("Furniture");products.add("Office Supplies");products.add("Technology");
+        ArrayList<String> customers = new ArrayList<String>();customers.add("Consumer");customers.add("Corporate");customers.add("Home Office");customers.add("Small Business");
+        ArrayList<String> deliveryMethods = new ArrayList<String>();deliveryMethods.add("Delivery Truck");deliveryMethods.add("Express Air");deliveryMethods.add("Regular Air");
+
+
+
 
         Map<Integer,List<Product>> CSVData = new HashMap<>();
         List<Product> CSVDataStack = new ArrayList<>();
