@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(indexes = {@Index(name = "my_index", columnList = "productCategory, customerSegment, deliveryMethod", unique = true)})
+@Table(indexes = {@Index(name = "my_index", columnList = "productCategory, customerSegment, deliveryMethod,year", unique = true)})
 @Data
 public class SalesProfitsSummery {
     @Id

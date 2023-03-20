@@ -15,10 +15,8 @@
             <div class="col-3">
                 <label for="sel1">Select Year:</label>
                     <select class="form-control" id="sel1" name="sellist1">
-                        <option>2009</option>
-                        <option>2010</option>
-                        <option>2011</option>
-                        <option>2012</option>
+                        <option value="0">select option</option>
+                        <option th:each="option : ${years}" th:value="${option}" th:text="${option}"></option>
                     </select>
             </div>
         </div>

@@ -38,7 +38,6 @@ public class DataSavingService {
         this.salesProfitsSummery = new SalesProfitsSummery();
     }
 
-    private static Logger logger = LoggerFactory.getLogger(DataSavingService.class);
 
     public boolean UpdateDB(Map<Integer, List<Product>> csvData){
         List<SalesProfitsSummery> ListSalesProfitsSummery = new ArrayList<>();
