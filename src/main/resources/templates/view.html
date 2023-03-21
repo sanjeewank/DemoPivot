@@ -3,24 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo | View</title>
-    <link rel="stylesheet" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" type="text/css" />
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md12 box">
+            <a href="/" class="btn-info btn"> < Home </a>
             <h3 class="title">Pivot Table - Demo | View</h3>
-
+            <hr/>
             <div class="col-3">
                 <label for="sel1">Select Year:</label>
-                    <select class="form-control" id="sel1" name="sellist1">
-                        <option value="0">select option</option>
+                    <select class="form-control" id="yearChange" name="yearChange" th:onchange="'window.location = \'' + @{/view} + '/\' + this.value '">
+                        <option value="0">Select Option</option>
                         <option th:each="option : ${years}" th:value="${option}" th:text="${option}"></option>
                     </select>
             </div>
+            <hr/>
+
+            <div th:if="${dataStack}" class="col-12">
+                <table id="dataView" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th colspan="3"></th>
+                        <th>Sum of Sales</th>
+                        <th>Sum of Profit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="data : ${dataStack}">
+                        <th th:text="${data.productCategory}"></th>
+                        <th th:text="${data.customerSegment}"></th>
+                        <th th:text="${data.deliveryMethod}"></th>
+                        <td th:text="${data.sumOfSales}"></td>
+                        <td th:text="${data.sumOfProfits}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function mergeCells(table, startIndex) {
+        let headerCell = null;
+
+        for (let row of table.rows) {
+            const firstCell = row.cells[startIndex];
+
+            if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
+                headerCell = firstCell;
+            } else {
+                headerCell.rowSpan++;
+                firstCell.remove();
+            }
+        }
+    }
+    const table = document.querySelector('table');
+    mergeCells(table, 1);
+    mergeCells(table, 0);
+</script>
 </body>
 </html>

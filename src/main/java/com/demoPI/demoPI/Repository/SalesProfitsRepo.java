@@ -13,7 +13,7 @@ public interface SalesProfitsRepo extends JpaRepository<SalesProfitsSummery,Inte
     @Query(value = "SELECT DISTINCT year FROM sales_profits_summery", nativeQuery = true)
     List<Integer> getDistinctYears();
 
-    //List<SalesProfitsSummery> getAllByYear(int year);
+    List<SalesProfitsSummery> getAllByYear(int year);
 
 
 }
