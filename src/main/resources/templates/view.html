@@ -26,20 +26,19 @@
                 <table id="dataView" class="table table-bordered">
                     <thead>
                     <tr>
-                        <th colspan="3"></th>
-                        <th>Sum of Sales</th>
-                        <th>Sum of Profit</th>
+                        <th class="celcolor" colspan="3"></th>
+                        <th class="celcolor">Sum of Sales</th>
+                        <th class="celcolor">Sum of Profit</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="data : ${dataStack}">
-                        <th th:text="${data.productCategory}"></th>
-                        <th th:text="${data.customerSegment}"></th>
-                        <th th:text="${data.deliveryMethod}"></th>
-                        <td th:text="${data.sumOfSales}"></td>
-                        <td th:text="${data.sumOfProfits}"></td>
+                        <th class="celcolor" th:text="${data.productCategory}"></th>
+                        <th class="celcolor" th:text="${data.customerSegment}"></th>
+                        <th class="celcolor" th:text="${data.deliveryMethod}"></th>
+                        <td th:text="${data.sumOfSales}">$</td>
+                        <td th:text="${data.sumOfProfits}">$</td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -62,9 +61,10 @@
             }
         }
     }
-    const table = document.querySelector('table');
+    const table = document.querySelector('#dataView');
     mergeCells(table, 1);
     mergeCells(table, 0);
+    document.getElementById('dataView').style.verticalAlign='top';
 </script>
 </body>
 </html>
