@@ -48,22 +48,22 @@ public class DataSavingService {
         this.salesProfitsSummery.setYear(Year);
         try {
             CSVDataStack.forEach(
-                    (n) -> {
-                        this.salesProfitsSummery.setProductCategory(n.getProductCategory());
-                        ArrayList<DataStack> stacks =n.getDataPack();
+                    (stackItems) -> {
+                        this.salesProfitsSummery.setProductCategory(stackItems.getProductCategory());
+                        ArrayList<DataStack> stacks =stackItems.getDataPack();
                         stacks.forEach(
-                                (o) -> {
-                                    DataStack stack = o;
+                                (dataStacks) -> {
+                                    DataStack stack = dataStacks;
                                     this.salesProfitsSummery.setCustomerSegment(stack.getCustomerSegment());
                                     List<Map<String,Map<String,Double>>> deliveryData = new ArrayList<>();
                                     deliveryData = stack.getDeliveryData();
                                     deliveryData.forEach(
-                                            (p) -> {
-                                                this.salesProfitsSummery.setDeliveryMethod(p.keySet().stream().findFirst().get());
-                                                p.values().forEach(
-                                                        (Q) -> {
+                                            (deliveries) -> {
+                                                this.salesProfitsSummery.setDeliveryMethod(deliveries.keySet().stream().findFirst().get());
+                                                deliveries.values().forEach(
+                                                        (dataMap) -> {
                                                             Map<String,Double> values = new HashMap();
-                                                            values=Q;
+                                                            values=dataMap;
                                                             ArrayList<Double> salesAndProfit = new ArrayList<>();
                                                             values.entrySet().forEach(entry -> {
                                                                 salesAndProfit.add(entry.getValue());
